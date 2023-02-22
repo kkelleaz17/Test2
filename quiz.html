@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+        min-height: 100vh;
+        max-width: 100vw;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        font-family: 'Roboto', sans-serif;
+        padding-bottom: 50px
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+.Header{
+    width: calc(100% - 30px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px black solid;
+    padding: 15px;
+    margin: 0px;
+    background-color: rgb(86, 96, 124);
+    color: white;
+}
+.Header button{
+    width: 150px;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+.Holder{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 25px;
+}
+.Question-Box{
+    width: 820px;
+    height: 220px;
+    justify-content: center;
+    align-items: left   ;
+    flex-direction: column;
+    display: flex;
+   gap: 5px;
+}
+.Question-Box h1{
+    padding: 0px;
+    margin: 0px;
+}
+.Question-Box button{
+    font-family: 'Roboto', sans-serif;
+    height: 50px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 25px;
+    width: calc(100% - 25px);
+}
+.Select{
+    background-color: rgb(86, 96, 124);
+    color: white;
+}
+</style>
+<body>
+    <div class="Header">
+        <h1>Quiz app</h1>
+        <button id="Submit">Submit</button>
+    </div>
+
+  <div class="Holder">
+    <div class="Question-Box" data-boxnum="1">
+        <h1>What country has the highest life expectancy?</h1>
+        <button>A. Hong Kong</button>
+        <button>B. Japan</button>
+        <button>C. Germany</button>
+        <button>D. United States</button>
+    </div>
+
+
+    <div class="Question-Box" data-boxnum="2">
+        <h1>Who has won the most total Academy Awards?</h1>
+        <button>A. Walt Disney</button>
+        <button>B. Elon Musk</button>
+        <button>C. Joe rogan</button>
+        <button>D. Jake paul</button>
+    </div>
+
+    
+    <div class="Question-Box" data-boxnum="3">
+        <h1>How many minutes are in a full week?</h1>
+        <button>A. 10,080</button>
+        <button>B. 20,080</button>
+        <button>C. 30,080</button>
+        <button>D. 40,080</button>
+    </div>
+
+    
+    <div class="Question-Box" data-boxnum="4">
+        <h1>What company was originally called "Cadabra"?</h1>
+        <button>A. Amazon</button>
+        <button>B. Apple</button>
+        <button>C. Microsoft</button>
+        <button>D. Google</button>
+    </div>
+
+    
+    <div class="Question-Box" data-boxnum="5">
+        <h1>How many bones do we have in an ear?</h1>
+        <button>A. 3</button>
+        <button>B. 4</button>
+        <button>C. 5</button>
+        <button>D. 6</button>
+    </div>
+</div>
+
+</body>
+<script>
+    var PlayerAnswer = ['','','','',''];
+    const RightAnswer = ['Hong Kong','Walt Disney','10,080','Amazon','3'];
+    function BtnClick(event){
+        event.className = 'Select'
+        event.parentNode.childNodes.forEach(e=>{
+       if(e !== event){
+         e.className = ''
+       }
+    });
+    PlayerAnswer[event.parentNode.dataset.boxnum-1] = event.innerHTML.substring(3,event.innerHTML.length);
+    }
+    document.querySelectorAll('button').forEach(e=>{
+        if(e.innerHTML !== 'Submit'){
+        e.setAttribute('onclick','BtnClick(this)')
+        }
+    })
+    document.getElementById("Submit").addEventListener('click',()=>{
+        var Score = 0
+
+        RightAnswer.forEach((e,i)=>{
+            if(e===PlayerAnswer[i]){
+                Score++;
+            }
+            console.log(e,PlayerAnswer[i])
+        })
+
+
+        alert('Score: '+Score + '/5');
+    })
+
+
+</script>
+</html>
